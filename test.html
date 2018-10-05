@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+    </script>
+    <script>
+        
+        $(document).ready(function () {
+           
+           
+            $("#add").click(function () {
+                $("#address").clone().appendTo("#addressclone").show();
+             
+                $(document).on("click","#del",function(){
+                    $(this).parent("#address").remove();
+                });
+                
+            });
+            // $("#del").click(function () {
+            //     i--;
+            //     console.log(i);
+                
+            //     $(this).parents("#address").remove();
+                
+            // });
+        });
+    </script>
+</head>
+
+<body>
+
+
+    <button id="add">ADD</button>
+    
+
+    <div id="addressclone"></div>
+     
+    <div id="address" style="display: none">
+    <table id="tab" class="wrapper">
+        
+        <tr id="row" class="abcd">
+        <tr>
+            <td>
+                <label for=add_type>Address Type</label>
+                <select id="add_type" name="add_type">
+                    <option value="Home">Home</option>
+                    <option value="Work">Work</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name='address' placeholder='Enter Address' />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name='city' placeholder='Enter City' class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <br />
+            <td>
+                <input type="text" name='state' placeholder='Enter State' class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <br />
+            <td>
+                <input type="text" name='zip' placeholder='Enter Zipcode' class="form-control" />
+            </td>
+        </tr>
+    </tr>
+    </table>
+    <button id="del">DEL</button>
+</div>
+
+</body>
+
+</html>

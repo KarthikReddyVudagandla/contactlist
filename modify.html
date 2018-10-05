@@ -1,0 +1,157 @@
+<html>
+  <head>
+<title>Modify </title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src='test.js'></script>
+<script>
+$(document).ready(function () {
+    var i = 1;
+    var j = 1;
+    var k = 1;
+    $("#add_row").click(function () {
+        
+        //$('tr').find('input').prop('disabled',true)
+        $('#addr' + i).html(" <tr><select><option>Home</option><option>Work</option></select></tr><tr><td><input type='text' name='address" + i + "'  placeholder='Enter Address' class='form-control input-md'/></td></tr><tr><td><input type='text' name='city" + i + "' placeholder='Enter City' class='form-control input-md'/></td><td><input type='text' name='state" + i + "' placeholder='Enter State' class='form-control input-md'/></td><td><input type='text' name='zip" + i + "' placeholder='Enter Zipcode' class='form-control input-md'/></td></tr>");
+
+        $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+        i++;
+    });
+});
+</script>
+
+</head>
+
+    <body>
+
+
+<div class="text-center">
+    <h1>MODIFY </h1>
+</div>
+<hr>
+<form action="insert.php" method="post">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <thead>
+                        <tr>Full Name:</tr>
+                    </thead>
+                    <tr>
+                        <br />
+                        <td>
+                            <input type="text" name='Fname' placeholder='Enter First name' class="form-control" value= "<?php echo $Fname ?>" >
+                        </td>
+                        <td>
+                            <input type="text" name='Mname' placeholder='Enter Middle Name' class="form-control" value='$Mname' >
+                        </td>
+                        <td>
+                            <input type="text" name='Lname' placeholder='Enter Last Name' class="form-control" value='$Lname' >
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <table class="table" id="tab_logic">
+                <tbody>
+                    <thead> Address:</thead>
+                    <tr id='addr'>
+                    <tr>
+                        <br />
+                        <br />
+                        <label for=add_type>Address Type</label>
+                        <select id="add_type" name="add_type">
+                            <option value="Home">Home</option>
+                            <option value="Work">Work</option>
+                        </select>
+                        <td>
+                            <input type="text" name='address' placeholder='Enter Address' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name='city' placeholder='Enter City' class="form-control" />
+                        </td>
+                        <br/>
+                        <td>
+                            <input type="text" name='state' placeholder='Enter State' class="form-control" />
+                        </td>
+                        <br/>
+                        <td>
+                            <input type="text" name='zip' placeholder='Enter Zipcode' class="form-control" />
+                        </td>
+                    </tr>
+                    </tr>
+
+                </tbody>
+            </table>
+            <button type="button" id="add_row" class="btn btn-primary btn-lg pull-left">Add Address</button>
+            <button type="button" id="del_row" class="btn btn-primary btn-lg pull-left">Delete Address</button>
+                           
+            <br />
+            <br />
+            <table class="table" id='tab_logic1'>
+                <tbody>
+                    <thead> Phone:</thead>
+                    <tr id='phnaddr'>
+                    <tr>
+                        <br />
+                        <br />
+                        <label for=add_type>Phone Type</label>
+                        <select id="add_type" name="add_type">
+                            <option value="Home">Home</option>
+                            <option value="Work">Work</option>
+                            <option value="Work">Cell</option>
+                        </select>
+                        <td>
+                            <input type="text" name='phone' placeholder='Enter Phone Number' />
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <button type="button" id="addphone_row" class="btn btn-primary btn-lg pull-left">Add Phone</button>
+            <button type="button" id="delphone_row" class="btn btn-primary btn-lg pull-left">Delete Phone</button>
+            <br />
+            <br />
+            <table class="table" id='tab_logic2'>
+                <tbody>
+                    <thead> Date:</thead>
+                    <tr id='dateaddr'>
+                    <tr>
+                        <br />
+                        <br />
+                        <label for=add_type>Date Type</label>
+                        <select id="add_type" name="add_type">
+                            <option value="birth">Birth</option>
+
+                        </select>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="date" name='dt' placeholder='Date' class="form-control" />
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <button type="button" id="adddate_row" class="btn btn-primary btn-lg pull-left">Add Date</button>
+            <button type="button" id="deldate_row" class="btn btn-primary btn-lg pull-left">Delete Date</button>
+        </div>
+    </div>
+
+</div>
+<br />
+<br />
+
+<input type="submit" value="SAVE CONTACT TO DATABASE">
+<br />
+</form>
+<!-- <button id="save" type="submit" class="btn btn-primary btn-lg pull-left">Save</button> -->
+
+
+</body>
+</html>

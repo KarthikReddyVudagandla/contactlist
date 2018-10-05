@@ -37,40 +37,39 @@ if(!$success){
 //echo "connected";
 
 // $(document).ready(function () {
-  $val=$_GET['id'];  
-  echo $val;
+  //print_r($_GET);  
 
- $Fname=$_POST["Fname"];
- $Mname=$_POST["Mname"];
- $Lname=$_POST["Lname"];
+   //$contact_id=$_GET["id"];
+   $contact_id= $_GET['id'];
 
- if($Fname&& $Lname)
+ if($contact_id)
  {
-    if(!$val){
-       // echo "new contact"; 
-    $sql="INSERT INTO contact(Fname,Mname,Lname) VALUES('$Fname','$Mname','$Lname')";
- }else{
-      // echo "updating";
-        $sql="UPDATE contact SET Fname='$Fname',Mname='$Mname',Lname='$Lname' WHERE contact_id=$val";
-    }
-     
+    $sql="DELETE FROM address WHERE contact_id=$contact_id";
+    $result1=mysqli_query($success,$sql);
     
+    
+    $sql="DELETE FROM phone WHERE contact_id=$contact_id";
+    $result2=mysqli_query($success,$sql);
+    
+    
+    $sql="DELETE FROM date WHERE contact_id=$contact_id";
+    $result3=mysqli_query($success,$sql);
+    
+    
+    $sql="DELETE FROM contact WHERE contact_id=$contact_id";
+    $result4=mysqli_query($success,$sql);
 
-$result=mysqli_query($success,$sql);
-
-if($result){
-    echo "Contact Added Successfully";
+if($result1 && $result2 && $result3 && result4){
+    echo "Contact Deleted Successfully";
 
 }
 else{
-    echo "Error occured while adding contact";
+    echo "Error occured while deleting contact";
 }
  }
 
  mysqli_close();
 ?>
-<br/>
-<a href='addnewcontact.html'>Add another contact</a>
 <br/>
 <a href='main.html'>Home</a>
 </body>
