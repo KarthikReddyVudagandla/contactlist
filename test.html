@@ -11,11 +11,13 @@
            
            
             $("#add").click(function () {
-                $("#address").clone().appendTo("#addressclone").show();
-             
-                $(document).on("click","#del",function(){
+                $("#address").clone().appendTo("#addressclone");
+               
+                $(document).on("click","#del.not(:first)",function(){
+                
                     $(this).parent("#address").remove();
                 });
+            
                 
             });
             // $("#del").click(function () {
@@ -37,7 +39,7 @@
 
     <div id="addressclone"></div>
      
-    <div id="address" style="display: none">
+    <div id="address">
     <table id="tab" class="wrapper">
         
         <tr id="row" class="abcd">

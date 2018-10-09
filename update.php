@@ -1,18 +1,8 @@
-<!-- NEED TO UPDATE CONTACTS WHICH ARE OLD N EDITED -->
-<!-- NEED TO UPDATE ADDRESS..PHN AND DATE...IF EXISTING OR NEWLY INSERTED...HV SEPERATE NAME FR OLD ONES
-BUT DOSE R INSERTED WITH NEW NAME....CHECK...
-OR....FOR OLD ADDRESSES OR PHN..DATE..ETC...IF CHANGE HAPPENS IN ANY FIELD...DEN TAKE THRU AJAX TO SEPERATE FIELD
-AND UPDATE THERE ONLY....
-ONLY NEW ONES TAKE THRU FORM....BUT OLD ONES ALSO COME.....SO..CHECK IF DIS COMPLETE THING EXISTS FOR DAT CONTCT ID..
-IF EXISTS...DONT INSERT...ELSE INSERT -->
-<!-- DELETE IS HAPPENING DYNAMICALLY IN DIFFERENT FILES -->
-
 <html>
 <head>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- <script src='test.js'></script> -->
-
 </head>
 
 <body>
@@ -55,13 +45,13 @@ if(!$success){
  $Lname=$_POST["Lname"];
  print_r($_POST);
  
-//  for ($i=0;$i<max(count($_POST['addaddr_type']),count($_POST['address']),count($_POST['city']),count($_POST['state']),count($_POST['zip']));$i++) {
-//     echo "<p>".$_POST['addaddr_type'][$i]."</p>";  
-//     echo "<hr />";
-//     $address[$i]=$_POST['addaddr_type'][$i];
-//  }
+ for ($i=1;$i<count($_POST['addaddr_type']);$i++) {
+    echo "<p>".$_POST['addaddr_type'][$i]."</p>";  
+    echo "<hr />";
+    $address[$i]=$_POST['addaddr_type'][$i];
+ }
   
- if($Fname)   // add last name also here    
+ if($Fname)
  {
     if(!$val){
        // echo "new contact"; 
@@ -73,7 +63,6 @@ if(!$success){
      
     
 
-
 $result=mysqli_query($success,$sql);
 
 if($result){
@@ -84,17 +73,15 @@ if($result){
     $fetchid=mysqli_fetch_array($rungetid);
     $contact_id=$fetchid["contact_id"];
     //echo $fetchid["contact_id"];
-    
-    for ($i=0;$i<max(count($_POST['addaddr_type']),count($_POST['address']),count($_POST['city']),count($_POST['state']),count($_POST['zip']));$i++) {
+    for ($i=1;$i<count($_POST['addaddr_type']);$i++) {
         $addresstype[$i]=$_POST['addaddr_type'][$i];
-        // echo $i;
-        // echo $address[$i];
+        echo $i;
+        echo $address[$i];
         $address[$i]= $_POST['address'][$i];
         $city[$i]= $_POST['city'][$i];
         $state[$i]=$_POST['state'][$i];
         $zip[$i]=$_POST['zip'][$i];
 
-     if($addresstype[$i] || $address[$i] ||  $city[$i] || $state[$i] || $zip[$i]){ 
      $addtoaddr="INSERT INTO address(contact_id,address_type,address,city,state,zip)VALUES($contact_id,'$addresstype[$i]','$address[$i]','$city[$i]','$state[$i]','$zip[$i]')";
      $runaddtoaddr=mysqli_query($success,$addtoaddr);  
      
@@ -105,18 +92,14 @@ if($result){
       }
    
     }
-   }
-  
 
-    for ($i=0;$i<max(count($_POST['addphn_type']),count($_POST['aracode']),count($_POST['number']));$i++) {
+
+    for ($i=1;$i<count($_POST['addphn_type']);$i++) {
         $phonetype[$i]=$_POST['addphn_type'][$i];
         $areacode[$i]=$_POST['areacode'][$i];
         $number[$i]=$_POST['number'][$i];
-        echo $phonetype[$i];
-        echo $areacode[$i] ;
-        echo $number[$i];
 
-    if($phonetype[$i] || $areacode[$i] || $number[$i] ){
+
      $addtophone="INSERT INTO phone(contact_id,phone_type,areacode,number)VALUES($contact_id,'$phonetype[$i]','$areacode[$i]','$number[$i]')";
     
      $runaddtophone=mysqli_query($success,$addtophone);  
@@ -127,15 +110,12 @@ if($result){
          echo"error while adding to phone tbl";
      }
     }
-   }
 
 
-    for ($i=0;$i<max(count($_POST['adddate_type']),count($_POST['date']));$i++) {
+    for ($i=1;$i<count($_POST['adddate_type']);$i++) {
         $datetype[$i]=$_POST['adddate_type'][$i];
         $date[$i]=$_POST['date'][$i];
-        echo $datetype[$i];
-        echo $date[$i];
-   if($datetype[$i] || $date[$i]){
+
      $addtodate ="INSERT INTO date(contact_id,date_type,date)VALUES($contact_id,'$datetype[$i]','$date[$i]')";
      $runaddtodate=mysqli_query($success,$addtodate);  
      
@@ -145,7 +125,7 @@ if($result){
          echo"error while adding to date tbl";
      }
     }
-   } 
+     
 
     }else{
         echo "Error occured while getting id from contact";
