@@ -437,6 +437,7 @@ if($dateResult){
                     </datalist>
                 </td>
                 <td></td>
+                <input type="hidden" name='address_id[<?$i?>]' value='<? echo $address_id[$i] ?>'/>
                 <button type="button" id="deloldaddr_row" class="btn pull-right" value='<? echo $address_id[$i] ?>' >Delete</button>
             </tr>
 
@@ -552,10 +553,11 @@ if($dateResult){
                             <datalist id="phn_type">
                                 <option value="Home">Home</option>
                                 <option value="Work">Work</option>
-                                <option value="Work">Cell</option>
+                                <option value="Cell">Cell</option>
                             </datalist>
                         </td>
                         <td></td>
+                        <input type="hidden" name='phone_id[<?$i?>]' value='<? echo $phone_id[$i] ?>'/>
                         <button type="button" id="deloldphone_row" class="btn pull-right" value='<? echo $phone_id[$i] ?>' >Delete</button>
                     </tr>
                     <tr>
@@ -609,6 +611,7 @@ if($dateResult){
                     <datalist id="date_type">
                         <option value="birth">Birth</option>
                     </datalist>
+                    <input type="hidden" name='date_id[<?$i?>]' value='<? echo $date_id[$i] ?>'/>
                     <button type="button" id="delolddate_row" class="btn pull-right" value='<? echo $date_id[$i] ?>'>Delete</button>
                 </tr>
 

@@ -89,11 +89,14 @@ if($result){
         $addresstype[$i]=$_POST['addaddr_type'][$i];
         // echo $i;
         // echo $address[$i];
+        if($val){
+          $address_id[$i]=$_POST['address_id'][$i];
+        }
         $address[$i]= $_POST['address'][$i];
         $city[$i]= $_POST['city'][$i];
         $state[$i]=$_POST['state'][$i];
         $zip[$i]=$_POST['zip'][$i];
-
+      if(!$address_id[$i]){
      if($addresstype[$i] || $address[$i] ||  $city[$i] || $state[$i] || $zip[$i]){ 
      $addtoaddr="INSERT INTO address(contact_id,address_type,address,city,state,zip)VALUES($contact_id,'$addresstype[$i]','$address[$i]','$city[$i]','$state[$i]','$zip[$i]')";
      $runaddtoaddr=mysqli_query($success,$addtoaddr);  
@@ -104,18 +107,36 @@ if($result){
           echo"error while adding to addr tbl";
       }
    
+      }
+    }else{//address id exists...so update
+          //echo $address_type[$i];
+        $updateaddr="UPDATE address SET address_type='$addresstype[$i]',address='$address[$i]',city='$city[$i]',state='$state[$i]',zip='$zip[$i]' WHERE address_id=$address_id[$i]";
+        $runupdatetoaddr=mysqli_query($success,$updateaddr);  
+     
+      if($runupdatetoaddr){
+          echo"updated to address tbl";
+      }else{
+          echo"error while updating to addr tbl";
+      }   
+   
     }
+
+
    }
   
 
     for ($i=0;$i<max(count($_POST['addphn_type']),count($_POST['aracode']),count($_POST['number']));$i++) {
+
+        if($val){
+         $phone_id[$i]=$_POST['phone_id'][$i];   
+        }
         $phonetype[$i]=$_POST['addphn_type'][$i];
         $areacode[$i]=$_POST['areacode'][$i];
         $number[$i]=$_POST['number'][$i];
         echo $phonetype[$i];
         echo $areacode[$i] ;
         echo $number[$i];
-
+    if(!$phone_id[$i]){
     if($phonetype[$i] || $areacode[$i] || $number[$i] ){
      $addtophone="INSERT INTO phone(contact_id,phone_type,areacode,number)VALUES($contact_id,'$phonetype[$i]','$areacode[$i]','$number[$i]')";
     
@@ -127,14 +148,31 @@ if($result){
          echo"error while adding to phone tbl";
      }
     }
+    }else{//update if no phone_id
+      
+        $updatephone="UPDATE phone SET phone_type='$phonetype[$i]',areacode='$areacode[$i]',number='$number[$i]' WHERE phone_id=$phone_id[$i]";
+        $runupdatetophone=mysqli_query($success,$updatephone);  
+     
+      if($runupdatetophone){
+          echo"updated to phone tbl";
+      }else{
+          echo"error while updating to phone tbl";
+      }
+
+    }
    }
 
 
     for ($i=0;$i<max(count($_POST['adddate_type']),count($_POST['date']));$i++) {
+        if($val){
+            $date_id[$i]=$_POST['date_id'][$i];   
+           }
         $datetype[$i]=$_POST['adddate_type'][$i];
         $date[$i]=$_POST['date'][$i];
-        echo $datetype[$i];
-        echo $date[$i];
+        // echo $datetype[$i];
+        // echo $date[$i];
+
+    if(!$date_id[$i]){    
    if($datetype[$i] || $date[$i]){
      $addtodate ="INSERT INTO date(contact_id,date_type,date)VALUES($contact_id,'$datetype[$i]','$date[$i]')";
      $runaddtodate=mysqli_query($success,$addtodate);  
@@ -145,6 +183,20 @@ if($result){
          echo"error while adding to date tbl";
      }
     }
+   }else{
+
+    $updatedate="UPDATE date SET date_type='$datetype[$i]',date='$date[$i]'  WHERE date_id=$date_id[$i]";
+    $runupdatetodate=mysqli_query($success,$updatedate);  
+ 
+  if($runupdatetodate){
+      echo"updated to date tbl";
+  }else{
+      echo"error while updating to date tbl";
+  }
+
+
+
+   }
    } 
 
     }else{
