@@ -22,7 +22,7 @@ $search = $_GET["search"];
       </ul>
       <ul class="navbar-right" style="padding-top:20px;" >
       <form action="http://localhost/contactlist/display.php" method="post">
-      <table><tr><td> <input style="float:right" type="text" name="search" placeholder="Search Contact" class="form-control"></td><td><input type="submit" value="Search"  class="form-control"></a></td><td><button id="addnewcontact" type="submit" class="btn btn-primary ">Add New Contact</button></td></tr></table>
+      <table><tr><td> <input style="float:right" type="text" name="search" placeholder="Search Contact" class="form-control" value='<? echo $search ?>'></td><td><input type="submit" value="Search"  class="form-control"></a></td><td><button id="addnewcontact" type="submit" class="btn btn-primary ">Add New Contact</button></td></tr></table>
       </form>
     </ul>
   </div>
@@ -49,14 +49,16 @@ if(!$success){
 }
 //echo "connected";
 
-
-$search=$_POST["search"];
+//print_r($_POST);
+$search=($_POST["search"]);
+$pieces = explode(" ", $search);
+echo $search;
 
 // $sql="SELECT * FROM contact ";
 echo "<table id='myTable' class='table table-striped'><tr><td bgcolor='red'>Contact Id</td><td bgcolor='red'>First Name</td><td bgcolor='red'>Middle Name</td><td bgcolor='red'>Last Name</td><td bgcolor='red'>Action</td></tr>";
 if($search)
  {
-     $sql="SELECT * FROM contact WHERE Fname LIKE '%$search%' OR Mname LIKE '%$search%' OR Lname LIKE '%$search%' ;";
+     $sql="SELECT * FROM contact   WHERE Fname LIKE '%$search%' OR Mname LIKE '%$search%' OR Lname LIKE '%$search%' OR address.address LIKE '%$search%' OR address.city LIKE '%$search%'  ;";
     // $sql .="SELECT * FROM address WHERE address LIKE '%$search%' OR city LIKE '%$search%' OR state LIKE '%$search%'OR zip LIKE '%$search%' ;";
     //  $sql .="SELECT * FROM phone WHERE areacode LIKE '%$search%' OR number LIKE '%$search%' ;";
     //  $sql .="SELECT * FROM date WHERE date LIKE '%$search%' ;"; 
@@ -72,10 +74,9 @@ while($row= mysqli_fetch_array($result)){
 }
 if($search)
  {
-     //$sql="SELECT * FROM contact WHERE Fname LIKE '%$search%' OR Mname LIKE '%$search%' OR Lname LIKE '%$search%' ;";
+    
       $sql1 ="SELECT * FROM address WHERE address LIKE '%$search%' OR city LIKE '%$search%' OR state LIKE '%$search%'OR zip LIKE '%$search%' ;";
-    //  $sql .="SELECT * FROM phone WHERE areacode LIKE '%$search%' OR number LIKE '%$search%' ;";
-    //  $sql .="SELECT * FROM date WHERE date LIKE '%$search%' ;"; 
+    
 
     } 
 $result1=mysqli_query($success,$sql1);
@@ -108,7 +109,7 @@ while($row= mysqli_fetch_array($result2)){
      $result=mysqli_query($success,$getfromcontact);
      if($row= mysqli_fetch_array($result)){
       $bid= $row["contact_id"];
-    echo "<tr><td>" ,$row["contact_id"] ,"</td><td>", $row["Fname"],"</td><td>", $row["Mname"],"</td><td>", $row["Lname"],"</td><td><table><td>","<a href='modify.php?id=$bid '> Modify</a>","</td><td> |","<a href='delete.php?id=$bid '> Delete</a>" ,"</td></table></td></tr>";
+    echo "<tr><td>" ,$row["contact_id"] ,"</td><td>", $row["Fname"],"</td><td>", $row["Mname"],"</td><td>", $row["Lname"],"</td><td><table><td>","<a href='modify.php?id=$bid'>Modify </a>","</td><td> |","<a href='delete.php?id=$bid '> Delete</a>" ,"</td></table></td></tr>";
      }
   }
 
@@ -140,30 +141,6 @@ echo "</table>";
  echo $rowcount,":Contacts displayed";
 ?>
 
-<script>
-
-function myFunction() {
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    //td = tr[i].getElementsByTagName("td")[1];
-    //echo td;
-    if (tr[i]) {
-      if (tr[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    } 
-  }
-}
-</script>
 
 <br/>
 <a href='main.html'>Home</a>

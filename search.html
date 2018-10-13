@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>Add New Contact </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+    
+    .global-search {
+    text-align:center;
+    padding:10px;
+  }
+   .global-search * {
+    display:inline-block;
+    margin-bottom:0;
+  }
+
+   .global-search .form-control {
+      width:120px;
+  }
+
+   .global-search a {
+    display:block;
+    padding-top:10px;
+  }
+
+
+
+@media (min-width:400px){
+   .global-search {
+    padding: 20px 0;
+    text-align:center;
+    }
+
+   .global-search .form-control {
+    margin-top: 250px;
+    margin-left: 500px;   
+    width:1000px;
+    height: 50px;
+   }
+
+}
+    
+    
+    </style>
+</head>
+<body>
+
+    <form class="form-inline global-search" role="form">
+        <div class="form-group">
+            <label class="sr-only" for="">Enter search terms</label>
+            <input type="search" class="form-control" id="k" name="k" placeholder="Enter search terms">
+            <input id="cn" name="cn" type="hidden" value="false" />
+        </div>
+        <button type="submit" id="s" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
+
+        </button> <a href="#">Search Help</a>
+
+    </form>
+
+</body>
