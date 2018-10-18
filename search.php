@@ -52,7 +52,7 @@ if(!$success){
 //print_r($_POST);
 $search=($_POST["search"]);
 $pieces = explode(" ", $search);
-echo count($pieces);
+//echo count($pieces);
 
  $sql="SELECT * FROM contact WHERE";
 echo "<table id='myTable' class='table table-striped'><tr><td bgcolor='red'>Contact Id</td><td bgcolor='red'>First Name</td><td bgcolor='red'>Middle Name</td><td bgcolor='red'>Last Name</td><td bgcolor='red'>Action</td></tr>";
@@ -86,31 +86,6 @@ echo "</table>";
  mysqli_close();
  echo $rowcount,":Contacts displayed";
 ?>
-
-<script>
-
-function myFunction() {
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    //td = tr[i].getElementsByTagName("td")[1];
-    //echo td;
-    if (tr[i]) {
-      if (tr[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    } 
-  }
-}
-</script>
 
 <br/>
 <a href='main.html'>Home</a>

@@ -1,11 +1,3 @@
-<!-- NEED TO UPDATE CONTACTS WHICH ARE OLD N EDITED -->
-<!-- NEED TO UPDATE ADDRESS..PHN AND DATE...IF EXISTING OR NEWLY INSERTED...HV SEPERATE NAME FR OLD ONES
-BUT DOSE R INSERTED WITH NEW NAME....CHECK...
-OR....FOR OLD ADDRESSES OR PHN..DATE..ETC...IF CHANGE HAPPENS IN ANY FIELD...DEN TAKE THRU AJAX TO SEPERATE FIELD
-AND UPDATE THERE ONLY....
-ONLY NEW ONES TAKE THRU FORM....BUT OLD ONES ALSO COME.....SO..CHECK IF DIS COMPLETE THING EXISTS FOR DAT CONTCT ID..
-IF EXISTS...DONT INSERT...ELSE INSERT -->
-<!-- DELETE IS HAPPENING DYNAMICALLY IN DIFFERENT FILES -->
 
 <html>
 <head>
@@ -16,8 +8,6 @@ IF EXISTS...DONT INSERT...ELSE INSERT -->
 </head>
 
 <body>
-
-
 
 <!-- <form action="display.php" method="GET">
 <input type="text" name="search" >
@@ -48,12 +38,12 @@ if(!$success){
 
 // $(document).ready(function () {
   $val=$_GET['id']; 
-  echo $val;
+  //echo $val;
 
  $Fname=$_POST["Fname"];
  $Mname=$_POST["Mname"];
  $Lname=$_POST["Lname"];
- print_r($_POST);
+ //print_r($_POST);
  
 //  for ($i=0;$i<max(count($_POST['addaddr_type']),count($_POST['address']),count($_POST['city']),count($_POST['state']),count($_POST['zip']));$i++) {
 //     echo "<p>".$_POST['addaddr_type'][$i]."</p>";  
@@ -77,7 +67,7 @@ if(!$success){
 $result=mysqli_query($success,$sql);
 
 if($result){
-    echo "Contact Added Successfully in contact tbl";
+    echo "Contact Added Successfully";
     $getid="SELECT * FROM contact WHERE Fname='$Fname' AND Mname='$Mname' AND Lname='$Lname'";
     $rungetid=mysqli_query($success,$getid);
     if($rungetid){
@@ -102,7 +92,7 @@ if($result){
      $runaddtoaddr=mysqli_query($success,$addtoaddr);  
      
       if($runaddtoaddr){
-          echo"added to address tbl";
+         // echo"added to address tbl";
       }else{
           echo"error while adding to addr tbl";
       }
@@ -114,7 +104,7 @@ if($result){
         $runupdatetoaddr=mysqli_query($success,$updateaddr);  
      
       if($runupdatetoaddr){
-          echo"updated to address tbl";
+         // echo"updated to address tbl";
       }else{
           echo"error while updating to addr tbl";
       }   
@@ -143,7 +133,7 @@ if($result){
      $runaddtophone=mysqli_query($success,$addtophone);  
      
      if($runaddtophone){
-         echo"added to phone tbl";
+        // echo"added to phone tbl";
      }else{
          echo"error while adding to phone tbl";
      }
@@ -154,7 +144,7 @@ if($result){
         $runupdatetophone=mysqli_query($success,$updatephone);  
      
       if($runupdatetophone){
-          echo"updated to phone tbl";
+         // echo"updated to phone tbl";
       }else{
           echo"error while updating to phone tbl";
       }
@@ -178,7 +168,7 @@ if($result){
      $runaddtodate=mysqli_query($success,$addtodate);  
      
      if($runaddtodate){
-         echo"added to date tbl";
+        // echo"added to date tbl";
      }else{
          echo"error while adding to date tbl";
      }
@@ -189,7 +179,7 @@ if($result){
     $runupdatetodate=mysqli_query($success,$updatedate);  
  
   if($runupdatetodate){
-      echo"updated to date tbl";
+     // echo"updated to date tbl";
   }else{
       echo"error while updating to date tbl";
   }

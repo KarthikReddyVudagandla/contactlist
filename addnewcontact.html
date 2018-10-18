@@ -234,13 +234,13 @@ $("#adddate_row").click(function () {
                             </thead>
                             <tr>
                                 <td>
-                                   <input type="text" name='Fname' placeholder='Enter First name' class="form-control" required/>
+                                   <input type="text" name='Fname' pattern="^[a-zA-Z]{1,25}" placeholder='Enter First name' class="form-control" required/>
                                 </td>
                                 <td>
-                                    <input type="text" name='Mname' placeholder='Enter Middle Name' class="form-control" />
+                                    <input type="text" name='Mname' pattern="^[a-zA-Z]{1,25}" placeholder='Enter Middle Name' class="form-control" />
                                 </td>
                                 <td>
-                                    <input type="text" name='Lname' placeholder='Enter Last Name' class="form-control" required/>
+                                    <input type="text" name='Lname' pattern="^[a-zA-Z]{1,25}" placeholder='Enter Last Name' class="form-control" required/>
                                 </td>
                             </tr>
                         </tbody>
@@ -289,14 +289,13 @@ $("#adddate_row").click(function () {
             <br />
             <br />
             <input type="submit" class="btn btn-lg btn-primary" value="SAVE CONTACT TO DATABASE">
-            <a href="main.html"><button type="button" class="btn btn-lg btn-primary">BACK</button></a>
+            <a href=window.close()><button type="button" class="btn btn-lg btn-primary">BACK</button></a>
         </div>
         <script>
         $('#form').validator().on('submit', function (e) {
             if (e.isDefaultPrevented()) {
                  // handle the invalid form...
-            } else {
-             // everything looks good!
+                 window.close();
             }
 })
         </script>

@@ -48,14 +48,20 @@ $(document).on("click", "#deloldaddr_row", function () {
        $id=$(this).val();
     //    alert($(this).val());
        console.log($id);
-       $.ajax({  
-    type: "POST",  
-    url: "deletethis.php", 
-    data: 'id='+$id,
-    success: function(msg) {
-       console.log(msg);
-       }
-    });
+            if(confirm("Are you sure you want to delete this?")){
+                        $.ajax({  
+                    type: "POST",  
+                    url: "deletethis.php", 
+                    data: 'id='+$id,
+                    success: function(msg) {
+                        console.log(msg);
+                        }
+                    });
+            }
+            else{
+                return false;
+            }
+      
       
 
         $(this).parent("#old_address").remove();
@@ -65,14 +71,19 @@ $(document).on("click", "#deloldphone_row", function () {
     $id=$(this).val();
     //    alert($(this).val());
        console.log($id);
-       $.ajax({  
-    type: "POST",  
-    url: "deletethisphone.php", 
-    data: 'id='+$id,
-    success: function(msg) {
-       console.log(msg);
-       }
-    });
+        if(confirm("Are you sure you want to delete this?")){
+            $.ajax({  
+            type: "POST",  
+            url: "deletethisphone.php", 
+            data: 'id='+$id,
+            success: function(msg) {
+            console.log(msg);
+            }
+            });
+        }
+        else{
+            return false;
+        }
 
 
         $(this).parent("#old_phone").remove();
@@ -81,14 +92,19 @@ $(document).on("click", "#delolddate_row", function () {
     $id=$(this).val();
     //    alert($(this).val());
        console.log($id);
-       $.ajax({  
-    type: "POST",  
-    url: "deletethisdate.php", 
-    data: 'id='+$id,
-    success: function(msg) {
-       console.log(msg);
-       }
-    });
+        if(confirm("Are you sure you want to delete this?")){
+            $.ajax({  
+            type: "POST",  
+            url: "deletethisdate.php", 
+            data: 'id='+$id,
+            success: function(msg) {
+            console.log(msg);
+            }
+            });
+        }
+        else{
+            return false;
+        }
       
 
         $(this).parent("#old_date").remove();
@@ -99,7 +115,7 @@ $(document).on("click", "#delolddate_row", function () {
 
 </head>
 
-<body>
+<body style="background-color:rgb(211, 253, 253)">
 
 <?
 $user = 'root';
@@ -123,7 +139,7 @@ if(!$success){
 //echo "connected";
 
    $contact_id= $_GET['id'];
-   echo $contact_id;
+  // echo $contact_id;
 
  if($contact_id)
  {
@@ -338,7 +354,7 @@ if($dateResult){
                             <td>
                                 <input type="text" name='areacode[]' placeholder='Enter 3-digit area code'
                                     class="form-control" />
-                                <input type="text" name='number[]' placeholder='Enter7-digit Number'
+                                <input type="text" name='number[]' placeholder='Enter 10-digit Number'
                                     class="form-control" />
                             </td>
                             <td></td>
@@ -403,13 +419,13 @@ if($dateResult){
                             </thead>
                             <tr>
                         <td>
-                            <input type="text" name='Fname' placeholder='Enter First name' class="form-control" value='<? echo $Fname ?>' >
+                            <input type="text" name='Fname' placeholder='Enter First name' class="form-control" value='<? echo $Fname ?>'required >
                         </td>
                         <td>
                             <input type="text" name='Mname' placeholder='Enter Middle Name' class="form-control" value='<? echo $Mname ?>' >
                         </td>
                         <td>
-                            <input type="text" name='Lname' placeholder='Enter Last Name' class="form-control" value='<? echo $Lname ?>' >
+                            <input type="text" name='Lname' placeholder='Enter Last Name' class="form-control" value='<? echo $Lname ?>'required >
                         </td>
                     </tr>
                 </tbody>
@@ -538,7 +554,7 @@ if($dateResult){
 
 <? for($i=0;$i<$phonecount;$i++){ ?>
 <?if($phonetype[$i] || $areacode[$i] || $number[$i] ){ ?>
-<?echo " phone entered";?>
+
 
 <div id="old_phone" >
     <table class="table">
@@ -562,9 +578,9 @@ if($dateResult){
                     </tr>
                     <tr>
                         <td>
-                                <input type="text" name='areacode[<?$i?>]' placeholder='Enter 3-digit Area code' value='<? echo $areacode[$i] ?>'
+                                <input type="text" name='areacode[<?$i?>]' pattern="^[0-9]{3}" placeholder='Enter 3-digit Area code' value='<? echo $areacode[$i] ?>'
                                 class="form-control" />
-                            <input type="text" name='number[<?$i?>]' placeholder='Enter 7-digit Number' value='<? echo $number[$i] ?>'
+                            <input type="text" name='number[<?$i?>]' pattern="^[0-9]{10}" placeholder='Enter 10-digit Number' value='<? echo $number[$i] ?>'
                                 class="form-control" />
                         </td>
                         <td></td>
@@ -597,7 +613,7 @@ if($dateResult){
         
 <? for($i=0;$i<$datecount;$i++){ ?>
 <?if($datetype[$i] || $date[$i] ){ ?>
-<?echo " date entered";?>
+
 
 <div id="old_date" >
         <table class="table ">
